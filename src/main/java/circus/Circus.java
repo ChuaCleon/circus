@@ -1,6 +1,7 @@
 package circus;
 
 import circus.animal.*;
+import circus.stuff.Cage;
 import circus.stuff.Cannon;
 import circus.stuff.Equipment;
 import circus.stuff.Ladder;
@@ -42,6 +43,15 @@ public class Circus {
         return total;
     }
 
+    private static void printAllAnimals(ArrayList<Animal> animalArrayList) {
+        for (Animal a : animalArrayList) {
+            System.out.println(a);
+        }
+    }
+    private static void printNumberofAnimalsInTheCircus(ArrayList<Animal> animalArrayList) {
+        System.out.println("Size of our animal array list: " + animalArrayList.size());
+    }
+
     public static void main(String[] args) {
         System.out.println("Number of animals in the array are: " + animals.length);
 //        animals[3] = new Elephant("Dumbo"); // this doesnt work
@@ -70,15 +80,27 @@ public class Circus {
 //        makeAnimalsTalk();
 //        System.out.println("Total value of animals " + calculateAssetValue(animals));
 //        System.out.println("Total value of equipments " + calculateAssetValue(equipments));
-    }
+        animalArrayList.add(new Tiger("Sherkhan"));
+        System.out.println("Number of animals: " + animalArrayList.size());
 
-    private static void printNumberofAnimalsInTheCircus(ArrayList<Animal> animalArrayList) {
-        System.out.println("Size of our animal array list: " + animalArrayList.size());
-    }
+        animalArrayList.add(strongOne);
 
-    private static void printAllAnimals(ArrayList<Animal> animalArrayList) {
-        for (Animal a : animalArrayList){
-            System.out.println(a);
+        printAllAnimals(animalArrayList);
+
+        Cage<Duck> duckCage = new Cage<>();
+        Duck duck = new Duck("Henry");
+        duckCage.lockUp(duck);
+        Parrot parrot = new Parrot("Peter");
+        Cage<Parrot> parrotCage = new Cage<>();
+        parrotCage.lockUp(parrot);
+
+        ArrayList<Cage> cages = new ArrayList<>();
+        cages.add(duckCage);
+        cages.add(parrotCage);
+
+        for(Cage c: cages) {
+            c.release();
+
         }
     }
 }
